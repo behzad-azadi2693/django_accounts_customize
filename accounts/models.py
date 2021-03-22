@@ -9,9 +9,9 @@ class MyUserManager(BaseUserManager):
         if not email:#checking my fields
             raise ValueError('users must have Email')
         if not username:
-            raise ValueError("usser must have UserName")
+            raise ValueError("user must have UserName")
         if not phone_number:
-            raise ValueError("usser must have Phone_Number")
+            raise ValueError("user must have Phone_Number")
 
         user = self.model(
                 email=self.normalize_email(email),

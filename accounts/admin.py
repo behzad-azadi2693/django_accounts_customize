@@ -7,7 +7,7 @@ from .forms import UserChangeForm, UserCreationForm
 class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    list_display = ('username', 'email', 'phone_number')
+    list_display = ('username', 'email', 'phone_number','is_admin')
     list_filter = ('is_admin', 'username')
     fieldsets = ( #this is for form
         (None,{
@@ -28,6 +28,11 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('username', 'phone_number', 'email')
     ordering = ('username',)
     filter_horizontal = ()
+
+    actions = ('make_admin',)
+    def make_admin(self, request, queryset):
+        queryset.update(is_admin=True)
+
 
 admin.site.register(User, UserAdmin)
 

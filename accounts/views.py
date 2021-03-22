@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from .forms import UserLoginForm, UserRegisterForm
+from .forms import UserLoginForm, UserRegisterForm, UserUpdateForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .models import User
@@ -45,3 +45,23 @@ def user_logout(request):
     logout(request)
     messages.success(request, 'you are logout', 'success')
     return redirect('shop:home')
+
+def user_update(request):
+    user = User.objects.get(pk=request.user.pk)
+    password_old= user.password
+
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=user)
+        if form.is_valid():
+            cd = form.cleaned_data        
+            user.username = cd['username']
+            user.email = cd['email']
+            if cd['password'] is not None:
+                user.set_password(cd['password'])
+            else:
+                user.password = password_old
+            user.phone_number = cd['phone_number']
+            user.save()
+    else:
+        form = UserUpdateForm(instance=user)
+    return render(request, 'accounts/update.html', {'form':form})
