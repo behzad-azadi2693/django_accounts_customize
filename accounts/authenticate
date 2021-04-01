@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 
-class EmailLogin:
+class EmailLoginBackend:
 	def authenticate(self, email=None, password=None):
 		try:
 			user = User.objects.get(email=email)
@@ -17,3 +17,10 @@ class EmailLogin:
 		
 		exceptser.DosNotExist:
             return None
+
+'''
+in the settings:
+AUTHENTICATION_BACKEND:[
+	'django.contrib.auth.backend.ModleBackend',
+	'accounts.authenticate.EmailLoginBackend'
+]
