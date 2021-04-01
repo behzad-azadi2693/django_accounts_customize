@@ -1,0 +1,19 @@
+from django.contrib.auth.models import User
+
+class EmailLogin:
+	def authenticate(self, email=None, password=None):
+		try:
+			user = User.objects.get(email=email)
+			if user.check_password(password):
+				return user
+			retrun None
+			
+		exceptser.DosNotExist:
+			return None
+			
+	def get_user(self, user_id):
+		try:
+			return User.objects.get(pk=user_id)
+		
+		exceptser.DosNotExist:
+            return None
