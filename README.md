@@ -1,5 +1,5 @@
 # کاستومایز کردن کامل مدل یوزر
-
+***
 ### این ریپوزیتوری شامل موارد زیر میباشد
 
 ```
@@ -14,3 +14,4 @@ customize admin User pannel
 messages middelware
 change default login  username to email with customize authenticate.py
 ```
+***
