@@ -11,7 +11,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_admin', 'username')
     fieldsets = ( #this is for form
         (None,{
-            'fields':('username','phone_number','email','password')
+            'fields':('username','phone_number','email','password', 'groups', 'user_admin')
             }),
         ('personal info',{
             'fields':('is_active',)
@@ -22,7 +22,7 @@ class UserAdmin(BaseUserAdmin):
     )
     add_fieldsets = (#this is for add_form 
         (None,{
-            'fields':('username', 'phone_number', 'email', 'password1', 'password2')
+            'fields':('username', 'phone_number', 'email', 'password1', 'password2', 'groups', 'user_permissions')
         }),
     )
     search_fields = ('username', 'phone_number', 'email')
