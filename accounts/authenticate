@@ -20,8 +20,8 @@ class EmailLoginBackend:
 
 '''
 in the settings:
-AUTHENTICATION_BACKEND:[
+AUTHENTICATION_BACKENDS = (
 	'django.contrib.auth.backend.ModleBackend',
 	'accounts.authenticate.EmailLoginBackend'
-]
+)
 '''
